@@ -2051,7 +2051,7 @@ export namespace Prisma {
     authorName?: StringFilter<"BlogPost"> | string
     createdAt?: DateTimeFilter<"BlogPost"> | Date | string
     changedAt?: DateTimeFilter<"BlogPost"> | Date | string
-  }, "id">
+  }, "id" | "id">
 
   export type BlogPostOrderByWithAggregationInput = {
     id?: SortOrder

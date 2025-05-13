@@ -1,3 +1,4 @@
+import { MainPageCard } from "@/components/general/MainPageCard";
 import { prisma } from "./utils/db";
 
 async function getData() {
@@ -10,6 +11,9 @@ async function getData() {
       authorName: true,
       id: true,
       createdAt: true,
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
 
@@ -24,7 +28,7 @@ export default async function Home() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {posts.map((post) => {
-          return post.title;
+          return <MainPageCard data={post} key={post.id} />;
         })}
       </div>
     </div>

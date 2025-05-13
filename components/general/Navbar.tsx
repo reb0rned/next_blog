@@ -3,50 +3,64 @@ import { buttonVariants } from "../ui/button";
 import {
   RegisterLink,
   LoginLink,
+  LogoutLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
+import { KindeUser } from "@kinde-oss/kinde-auth-nextjs";
+import { NavbarLinks } from "./NavBarLinks";
+import Image from "next/image";
 
-export const Navbar = () => {
+interface Props {
+  user: KindeUser<Record<string, any>> | null;
+}
+
+export function Navbar({ user }: Props) {
   return (
-    <nav className="py-5 flex items-center justify-between">
-      <Link href="/">
+    <nav className="py-5 flex items-center justify-between flex-wrap gap-4">
+      <Link href="/" className="flex-shrink-0">
         <h1 className="text-3xl font-semibold">
           Reb0rned<span className="text-blue-500">Blog</span>
         </h1>
       </Link>
 
-      <div className="flex-1 flex justify-start gap-6 pl-[60px] tracking-[1px]">
-        <Link
-          href="/"
-          className="hover:text-zinc-950 font-semibold text-[20px]"
-        >
-          Home
-        </Link>
-        <Link
-          href="/dashboard"
-          className="hover:text-zinc-950 font-semibold text-[20px]"
-        >
-          Dashboard
-        </Link>
-        <Link
-          href="/about"
-          className="hover:text-zinc-950 font-semibold text-[20px]"
-        >
-          About
-        </Link>
-      </div>
+      <NavbarLinks />
 
-      <div className="flex gap-4">
-        <LoginLink className={`cursor-pointer ${buttonVariants()}`}>
-          Sign in
-        </LoginLink>
-        <RegisterLink
-          className={`cursor-pointer ${buttonVariants({
-            variant: "secondary",
-          })}`}
-        >
-          Sign up
-        </RegisterLink>
+      <div className="flex items-center gap-4">
+        {user ? (
+          <>
+            <div className="relative size-8 overflow-hidden rounded-full">
+              <Image
+                src={user.picture as string}
+                alt={`${user.given_name} picture`}
+                fill
+                className="object-cover"
+              />
+            </div>
+            <LogoutLink
+              className={`${buttonVariants({ variant: "secondary" })}`}
+              aria-label="Log out"
+            >
+              Logout
+            </LogoutLink>
+          </>
+        ) : (
+          <>
+            <LoginLink
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition-colors"
+              aria-label="Sign in"
+            >
+              Sign in
+            </LoginLink>
+            <RegisterLink
+              className={`cursor-pointer ${buttonVariants({
+                variant: "secondary",
+              })}`}
+              aria-label="Sign up"
+            >
+              Sign up
+            </RegisterLink>
+          </>
+        )}
       </div>
     </nav>
   );
-};
+}
