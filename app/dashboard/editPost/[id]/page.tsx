@@ -7,14 +7,14 @@ interface Props {
 }
 
 export default async function editPost({ params }: Props) {
-  const { id } = await params;
+  const { id } = params;
   const data = await prisma.blogPost.findFirst({
     where: {
       id,
     },
   });
 
-  if (!data) notFound();
+  if (!data) return notFound();
 
   return <EditForm data={data!} />;
 }

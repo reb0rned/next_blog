@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default async function PostPage({ params }: Props) {
-  const { id } = await params;
+  const { id } = params;
   const data = await prisma.blogPost.findFirst({
     where: {
       id,
