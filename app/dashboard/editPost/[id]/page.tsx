@@ -7,9 +7,10 @@ interface Props {
 }
 
 export default async function editPost({ params }: Props) {
+  const { id } = await params;
   const data = await prisma.blogPost.findFirst({
     where: {
-      id: params.id,
+      id,
     },
   });
 

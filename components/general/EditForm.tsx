@@ -42,7 +42,7 @@ export default function EditForm({ data }: MainPageCardProps) {
       <Card className="bg-gray-100 text-white rounded-xl p-4">
         <div className="flex flex-col gap-1 pl-6 pt-4">
           <CardTitle className="text-gray-500 text-2xl">
-            Your post is almost done . . .
+            Have something to add?
           </CardTitle>
         </div>
         <CardContent className="flex flex-col gap-5 text-gray-500 tracking-[1px]">

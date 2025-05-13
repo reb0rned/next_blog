@@ -7,7 +7,7 @@ import { BlogCard } from "@/types/BlogCard";
 export const BlogPostCard = ({ data }: BlogCard) => {
   return (
     <div
-      className="group relative overflow-hidden rounded-lg border border-gray-200 bg-gray-200
+      className="group relative overflow-hidden rounded-lg border border-gray-300 bg-gray-300
       shadow-md transition-all hover:shadow-lg p-4 flex flex-col gap-4"
     >
       <Link href={`/post/${data.id}`} className="block">
