@@ -7,11 +7,11 @@ import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function PostPage({ params }: Props) {
-  const { id } = params;
+  const { id } = await params;
   const data = await prisma.blogPost.findFirst({
     where: {
       id,
